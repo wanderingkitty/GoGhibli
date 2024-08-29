@@ -202,14 +202,21 @@ ul {
 }
 
 .favorite-btn {
-  background: none;
-  border: none;
+  background-color: var(--card-background);
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 8px 16px;
   cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.favorite-btn img {
-  max-width: 30px; /* Adjust as needed */
-  position: relative;
+/* Style for the selected state of the favorite button */
+.favorite-btn.selected {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #333;
 }
 
 /* Responsive Design */

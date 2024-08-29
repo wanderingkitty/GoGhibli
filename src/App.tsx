@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { getMovies } from './data/getMovies';
 import { Movie } from './data/interfaces';
 import './App.css';
-import favoriteBtn from './assets/love (2).png';
 import { validateMovies } from './data/validation';
 
 function App() {
@@ -13,9 +12,12 @@ function App() {
   const [showFavorites, setShowFavorites] = useState<boolean>(false);
   const [showDescription, setShowDescription] = useState<{ [key: string]: boolean }>({});
 
-
-  const handleAddToFavorites = (movie: Movie) => {
-    if (!favorites.some(favorite => favorite.id === movie.id)) {
+  const handleToggleFavorite = (movie: Movie) => {
+    if (favorites.some(favorite => favorite.id === movie.id)) {
+      // If movie is already in favorites, remove it
+      setFavorites(favorites.filter(favorite => favorite.id !== movie.id));
+    } else {
+      // If movie is not in favorites, add it
       setFavorites([...favorites, movie]);
     }
   };
@@ -85,11 +87,13 @@ function App() {
                       <section className="description">
                         <h3>Description:</h3>
                         <p>{movie.description}</p>
-                        <button className="favorite-btn" onClick={(e) => {
-                          e.stopPropagation();  // Prevents triggering the description toggle
-                          handleAddToFavorites(movie);
-                        }}>
-                          <img src={favoriteBtn} alt="Favorite" />
+                        <button 
+                          className={`favorite-btn ${favorites.some(favorite => favorite.id === movie.id) ? 'selected' : ''}`} 
+                          onClick={(e) => {
+                            e.stopPropagation();  // Prevents triggering the description toggle
+                            handleToggleFavorite(movie);
+                          }}>
+                          {favorites.some(favorite => favorite.id === movie.id) ? 'Remove from Favorites' : 'Add to Favorites'}
                         </button>
                       </section>
                     )}
@@ -115,11 +119,13 @@ function App() {
                     <section className="description">
                       <h3>Description:</h3>
                       <p>{movie.description}</p>
-                      <button className="favorite-btn" onClick={(e) => {
-                        e.stopPropagation();  // Prevents triggering the description toggle
-                        handleAddToFavorites(movie);
-                      }}>
-                        <img src={favoriteBtn} alt="Favorite" />
+                      <button 
+                        className={`favorite-btn ${favorites.some(favorite => favorite.id === movie.id) ? 'selected' : ''}`} 
+                        onClick={(e) => {
+                          e.stopPropagation();  // Prevents triggering the description toggle
+                          handleToggleFavorite(movie);
+                        }}>
+                        {favorites.some(favorite => favorite.id === movie.id) ? 'Remove from Favorites' : 'Add to Favorites'}
                       </button>
                     </section>
                   )}
