@@ -125,9 +125,33 @@ ul {
   transform: translateY(-10px);
 }
 
-/* Overlay style for description on hover */
+.description p {
+  max-width: 230px;
+  color: var(--card-background);
+  margin-bottom: 1em; /* Add some space between paragraphs */
+}
+
+/* Custom Scrollbars */
+.description::-webkit-scrollbar {
+  width: 8px; 
+}
+
+.description::-webkit-scrollbar-track {
+  background: var(--background-color);
+}
+
+.description::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 4px;
+}
+
+
+/* Show the description overlay on hover */
+.movie-card:hover .description {
+  opacity: 1;
+}
+/* Removed hover opacity for .description */
 .movie-card .description {
-  opacity: 0;
   position: absolute;
   top: 0;
   left: 0;
@@ -142,18 +166,12 @@ ul {
   justify-content: flex-start;
   align-items:center;
   box-sizing: border-box;
-  transition: opacity 0.3s ease-in-out;
   border-radius: inherit; /* Maintain card border radius */
   padding: 10px;
   padding-top: 2em;
+  overflow-y: auto; /* Enable vertical scroll */
 }
 
-/* Show the description overlay on hover */
-.movie-card:hover .description {
-  opacity: 1;
-}
-
-/* Ensure the image remains in the card */
 .movie-card img {
   transition: opacity 0.3s ease-in-out;
 }
