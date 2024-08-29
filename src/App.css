@@ -1,0 +1,265 @@
+/* Root Variables */
+:root {
+  --primary-color: #FBAAA2;
+  --secondary-color: #6c757d;
+  --background-color: #111D13;
+  --text-color: #333;
+  --card-background: #FBEFE3;
+  --card-shadow: rgba(0, 0, 0, 0.299);
+}
+
+/* Global Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  color: var(--text-color);
+  background: #FBAAA2;
+  background: rgb(255,188,179);
+  background: radial-gradient(circle, rgba(255,188,179,1) 0%, rgba(251,170,162,1) 50%, rgba(235,84,73,1) 100%);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+img {
+  max-width: 250px;
+}
+
+h2 {
+  color: var(--background-color);
+}
+
+h1 {
+  color: var(--card-background);
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+input[type="text"] {
+  padding: 10px;
+  border: 1px solid var(--secondary-color);
+  border-radius: 6px;
+  width: 100%;
+  max-width: 300px;
+  margin-right: 10px;
+  background-color: var(--card-background);
+}
+
+ul {
+  margin: 0, auto;
+  margin-left: 0;
+}
+
+.button-search-field {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+/* Container */
+.app {
+  padding: 20px;
+  margin: 0 auto;
+}
+
+/* Button and Input */
+.get-movies-btn, .favorite-vy {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  margin-right: 1.5em;
+}
+
+.get-movies-btn:hover, .favorite-vy:hover {
+  background-color: darken(var(--primary-color), 10%);
+  color: var(--background-color);
+}
+
+/* Grid Layout */
+.movie-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.movie-cards > ul {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.movie-card h2 {
+  font-size: 1.5rem;
+}
+
+.movie-card p {
+  font-size: 1rem;
+  color: var(--secondary-color);
+}
+
+/* Card Styles */
+.movie-card {
+  background-color: var(--card-background);
+  border-radius: 12px;
+  box-shadow: 0 10px 8px var(--card-shadow);
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+  text-align: center;
+  position: relative; /* For positioning the overlay */
+  padding: 20px;
+  max-height: 500px;
+}
+
+.movie-card:hover {
+  transform: translateY(-10px);
+}
+
+/* Overlay style for description on hover */
+.movie-card .description {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 4em;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.675); 
+  color: var(--card-background);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items:center;
+  box-sizing: border-box;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: inherit; /* Maintain card border radius */
+  padding: 10px;
+  padding-top: 2em;
+}
+
+/* Show the description overlay on hover */
+.movie-card:hover .description {
+  opacity: 1;
+}
+
+/* Ensure the image remains in the card */
+.movie-card img {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.movie-card h2, 
+.movie-card p {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.description {
+  display: flex;
+  align-items: center; /* Align items vertically */
+  justify-content: space-between; /* Space between description text and button */
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.675);
+  color: var(--card-background);
+  gap: 10px; /* Add some space between text and button if needed */
+}
+
+.description p {
+  max-width: 230px;
+  color: var(--card-background);
+}
+
+
+.description h3 {
+  margin: 0; /* Remove default margin */
+}
+
+.favorite-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.favorite-btn img {
+  max-width: 30px; /* Adjust as needed */
+  position: relative;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1200px){
+  .movie-cards {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 10px;
+  }
+}
+
+@media screen and (max-width: 900px){
+  .movie-cards {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 10px;
+  }
+}
+  
+@media screen and (max-width: 750px) {
+  .movie-cards {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 100%;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .movie-cards {
+    grid-template-columns: repeat(1, 1fr);
+    max-width: 100%;
+  }
+}
+
+
+/* Animations */
+.movie-card {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px; 
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 4px;
+}
